@@ -10,7 +10,7 @@ export const register = async (req, res) => {
     // Verify if a user with the same email already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ message: 'Ya existe un usuario con el mismo correo electrónico' });
+      return res.status(400).json({ message: 'A user with the same email already exists' });
     }
 
     // Create a new user
@@ -25,7 +25,7 @@ export const register = async (req, res) => {
     res.status(201).json({ accessToken });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Ha ocurrido un error al registrar el usuario' });
+    res.status(500).json({ message: 'An error occurred while registering the user' });
   }
 };
 
@@ -36,12 +36,12 @@ export const login = async (req, res) => {
     // Verify if the email and password are correct
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(401).json({ message: 'Credenciales inválidas' });
+      return res.status(401).json({ message: 'Invalid credentials' });
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      return res.status(401).json({ message: 'Credenciales inválidas' });
+      return res.status(401).json({ message: 'Invalid credentials' });
     }
 
     // Generate an access token
@@ -51,6 +51,6 @@ export const login = async (req, res) => {
     res.status(200).json({ accessToken });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Ha ocurrido un error al iniciar sesión' });
+    res.status(500).json({ message: 'An error occurred while logging in' });
   }
 };
