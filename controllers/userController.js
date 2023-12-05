@@ -9,7 +9,7 @@ export const getUsers = async (req, res) => {
     res.status(200).json(users);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Ha ocurrido un error al obtener los usuarios' });
+    res.status(500).json({ message: 'An error occurred while obtaining users' });
   }
 };
 
@@ -20,14 +20,14 @@ export const getUserById = async (req, res) => {
     // Search for a user by their ID in the database
     const user = await User.findById(id);
     if (!user) {
-      return res.status(404).json({ message: 'Usuario no encontrado' });
+      return res.status(404).json({ message: 'User not found' });
     }
 
     // Send a response to the client
     res.status(200).json(user);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Ha ocurrido un error al obtener el usuario' });
+    res.status(500).json({ message: 'An error occurred while obtaining the user' });
   }
 };
 
@@ -39,7 +39,7 @@ export const updateUser = async (req, res) => {
     // Search for a user by their ID in the database
     const user = await User.findById(id);
     if (!user) {
-      return res.status(404).json({ message: 'Usuario no encontrado' });
+      return res.status(404).json({ message: 'User not found' });
     }
 
     // Update user email and password
@@ -51,7 +51,7 @@ export const updateUser = async (req, res) => {
     res.status(200).json(user);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Ha ocurrido un error al actualizar el usuario' });
+    res.status(500).json({ message: 'An error occurred while updating the user' });
   }
 };
 
@@ -62,7 +62,7 @@ export const deleteUser = async (req, res) => {
     // Search for a user by their ID in the database
     const user = await User.findById(id);
     if (!user) {
-      return res.status(404).json({ message: 'Usuario no encontrado' });
+      return res.status(404).json({ message: 'User not found' });
     }
 
     // Delete user from database
@@ -72,6 +72,6 @@ export const deleteUser = async (req, res) => {
     res.status(200).json(user);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Ha ocurrido un error al eliminar el usuario' });
+    res.status(500).json({ message: 'An error occurred while deleting the user' });
   }
 };
